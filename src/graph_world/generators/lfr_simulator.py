@@ -135,6 +135,7 @@ def GenerateLFRGraphWithFeatures(
     max_community_size,
     community_exponent,
     mixing_param,
+    num_feature_groups,
     feature_center_distance=0.0,
     feature_dim=0,
     feature_group_match_type=MatchType.RANDOM,
@@ -153,7 +154,8 @@ def GenerateLFRGraphWithFeatures(
         min_community_size: minimum community size 
         max_community_size: maximum community size 
         exponent_community: power law exponent that the community sizes should follow
-        mu: mixing parameter
+        mixing_param: mixing parameter
+        num_feature_groups: number of feature clusters
         feature_center_distance: distance between feature cluster centers. When this
             is 0.0, the signal-to-noise ratio is 0.0. When equal to
             feature_cluster_variance, SNR is 1.0.
@@ -182,7 +184,7 @@ def GenerateLFRGraphWithFeatures(
     SimulateFeatures(result, 
                     feature_center_distance,
                     feature_dim,
-                    len(community_sizes),
+                    num_feature_groups,
                     feature_group_match_type,
                     feature_cluster_variance,
                     normalize_features)

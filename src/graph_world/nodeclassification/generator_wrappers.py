@@ -161,6 +161,8 @@ class LFRGeneratorWrapper(GeneratorConfigSampler):
     self._AddSamplerFn('feature_dim', self._SampleUniformInteger)
     self._AddSamplerFn('edge_feature_dim', self._SampleUniformInteger)
     self._AddSamplerFn('edge_center_distance', self._SampleUniformFloat)
+    self._AddSamplerFn('num_clusters', self._SampleUniformInteger)
+
     
 
   def Generate(self, sample_id):
@@ -185,6 +187,7 @@ class LFRGeneratorWrapper(GeneratorConfigSampler):
       feature_dim=generator_config['feature_dim'],
       edge_center_distance=generator_config['edge_center_distance'],
       edge_feature_dim=generator_config['edge_feature_dim'],
+      num_feature_groups=generator_config['num_clusters'],
       normalize_features=self._normalize_features
     )
     

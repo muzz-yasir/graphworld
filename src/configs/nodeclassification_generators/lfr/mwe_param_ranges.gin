@@ -11,6 +11,7 @@ LFRSamplerSpec = [
   @feature_dim/ParamSamplerSpec(),
   @edge_center_distance/ParamSamplerSpec(),
   @edge_feature_dim/ParamSamplerSpec(),
+  @num_clusters/ParamSamplerSpec()
 ]
 
 nvertex/ParamSamplerSpec.name = "nvertex"
@@ -42,8 +43,8 @@ community_max_size_proportion/ParamSamplerSpec.min_val = 0.2
 community_max_size_proportion/ParamSamplerSpec.max_val = 0.2
 
 max_degree_proportion/ParamSamplerSpec.name = "max_degree_proportion"
-max_degree_proportion/ParamSamplerSpec.min_val = 0.19
-max_degree_proportion/ParamSamplerSpec.max_val = 0.19
+max_degree_proportion/ParamSamplerSpec.min_val = 0.17
+max_degree_proportion/ParamSamplerSpec.max_val = 0.17
 
 feature_dim/ParamSamplerSpec.name = "feature_dim"
 feature_dim/ParamSamplerSpec.min_val = 16
@@ -60,3 +61,7 @@ edge_center_distance/ParamSamplerSpec.max_val = 2.0
 edge_feature_dim/ParamSamplerSpec.name = "edge_feature_dim"
 edge_feature_dim/ParamSamplerSpec.min_val = 2.0
 edge_feature_dim/ParamSamplerSpec.max_val = 2.0
+
+num_clusters/ParamSamplerSpec.name = "num_clusters"
+num_clusters/ParamSamplerSpec.min_val = 2.0
+num_clusters/ParamSamplerSpec.max_val = 6.0
