@@ -15,23 +15,27 @@
 
 PROJECT_NAME="project"
 BUILD_NAME="graphworld"
-SIM=1
+SIM=0
 MACHINE_TYPE="n1-standard-1"
 MAX_NUM_WORKERS=1000
-while getopts p:b:m:w: flag
+DATASET_NAME="cora"
+VERSION="0"
+while getopts p:b:m:w:d:v: flag
 do
     case "${flag}" in
         p) PROJECT_NAME=${OPTARG};;
         b) BUILD_NAME=${OPTARG};;
         m) MACHINE_TYPE=${OPTARG};;
         w) MAX_NUM_WORKERS=${OPTARG};;
+        d) DATASET_NAME=${OPTARG};;
+        v) VERSION=${OPTARG};;
     esac
 done
 
 TIMESTAMP="$(date +"%Y-%m-%d-%H-%M-%S")"
-JOB_NAME="hparam-${TIMESTAMP}"
+JOB_NAME="hparam-${DATASET_NAME//_/-}-v${VERSION}"
 OUTPUT_PATH="gs://${BUILD_NAME}/${USER}/sampling/${JOB_NAME}"
-DATASET_PATH="gs://${BUILD_NAME}/datasets"
+DATASET_PATH="gs://${BUILD_NAME}/npz-datasets"
 TEMP_LOCATION="gs://${BUILD_NAME}/temp"
 echo "OUTPUT_PATH: ${OUTPUT_PATH}"
 
@@ -51,6 +55,7 @@ ENTRYPOINT="python3 /app/hparam_analysis_main.py \
   --temp_location="${TEMP_LOCATION}" \
   --gin_config=/app/configs/hparam_config.gin \
   --dataset_path="${DATASET_PATH}" \
+  --dataset_name="${DATASET_NAME}" \
   --output="${OUTPUT_PATH}" \
   --${SIM_PREFIX}sim \
   --job_name="${FULL_JOB_NAME}" \
